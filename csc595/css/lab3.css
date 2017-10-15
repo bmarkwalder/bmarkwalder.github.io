@@ -1,0 +1,23 @@
+body {
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    margin: auto;
+    position: relative;
+    width: 960px;
+}
+
+.bar {
+    fill: plum;
+}
+
+.bar:hover {
+    fill: slategrey;
+}
+
+.axis--x path {
+    display: none;
+}
+
+.center-clear {
+    text-align: center;
+    clear: both;
+}
