@@ -20,11 +20,12 @@ var BarViz = function () {
             g.append("g")
                 .attr("class", "axis axis--x")
                 .attr("transform", "translate(0," + height + ")")
-                .call(d3.axisBottom(x));
+                .call(d3.axisBottom(x).tickFormat(""));
+
 
             g.append("g")
                 .attr("class", "axis axis--y")
-                .call(d3.axisLeft(y).ticks(10, "%"))
+                .call(d3.axisLeft(y).ticks(10))
                 .append("text")
                 .attr("transform", "rotate(-90)")
                 .attr("y", 6)
@@ -40,9 +41,25 @@ var BarViz = function () {
                 .attr("y", function(d) { return y(d.value); })
                 .attr("width", x.bandwidth())
                 .attr("height", function(d) { return height - y(d.value);
+                })
+                .on("mouseover", function (d) {
+                    var xPos = parseFloat(d3.select(this).attr("x")) + x.bandwidth() / 2;
+                    var yPos = parseFloat(d3.select(this).attr("y")) + 10;
+
+                    svg.append("text")
+                        .attr("id", "tooltip")
+                        .attr("x", xPos)
+                        .attr("y", yPos)
+                        .attr("fill", "slategrey")
+                        .text(d.id);
+
+                })
+                .on("mouseout", function() {
+                    d3.select("#tooltip").remove();
+
                 });
         }
-    }
+    };
     return newBC;
 };
 

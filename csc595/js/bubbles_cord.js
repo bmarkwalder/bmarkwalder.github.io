@@ -2,7 +2,6 @@ var BubblesViz = function () {
     var newBV = {
         bubbles_cord: function(svg, bubblesRoot) {
 
-            //var svg = d3.select(svg); //might have to pull this back in if you separate the js from the html
             var width = +svg.attr("width"),
                 height = +svg.attr("height");
             var format = d3.format(",d");
@@ -12,19 +11,6 @@ var BubblesViz = function () {
             var pack = d3.pack()
                 .size([width, height])
                 .padding(1.5);
-
-            // var root = d3.hierarchy({children: classes})
-            //     .sum(function (d) {
-            //         return d.value;
-            //     })
-            //     .each(function (d) {
-            //         if (id = d.data.id) {
-            //             var id, i = id.lastIndexOf(".");
-            //             d.id = id;
-            //             d.package = id.slice(0, i);
-            //             d.class = id.slice(i + 1);
-            //         }
-            //     });
 
             var node = svg.selectAll(".node")
                 .data(pack(bubblesRoot).leaves())
